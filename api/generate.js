@@ -44,7 +44,6 @@ export default async function handler(req, res) {
     }
 
     await redis.set(key, used + 1, { ex: 86400 });
-
     const newUsed = used + 1;
     const result = await callClaude(prompt);
     if (result.error) return res.status(500).json({ error: result.error });
